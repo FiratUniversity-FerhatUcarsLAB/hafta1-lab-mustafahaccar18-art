@@ -1,4 +1,50 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250541623
+AD-SOYAD:mustafa haccar
 
-Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:Girdi:
+- N: Durak sayısı
+- DistanceMatrix[N][N]: Duraklar arası mesafe/süre matrisi
+- StartStop: Başlangıç durağı
+- Optional: MaxCapacity: Otobüs kapasitesi
+- Optional: PassengersPerStop[N]: Her duraktan alınacak yolcu sayısı
+
+Çıktı:
+- OptimalRoute: Otobüsün izleyeceği durak sırası
+- TotalDistance: Toplam seyahat mesafesi/süresi
+
+Algoritma:
+
+1. Başla
+2. ZiyaretEdilenDuraklar ← boş liste
+3. MevcutDurak ← StartStop
+4. ToplamMesafe ← 0
+5. Kapasite ← 0 (eğer yolcu sınırlaması varsa)
+6. OptimalRoute ← [StartStop]
+
+7. Tekrarla (N - 1) kez:
+    a. EnKisaMesafe ← sonsuz
+    b. SonrakiDurak ← null
+
+    c. HER durak i için:
+        i. Eğer i, ZiyaretEdilenDuraklar içinde DEĞİL ise ve i ≠ MevcutDurak ise:
+            - Eğer DistanceMatrix[MevcutDurak][i] < EnKisaMesafe ise:
+                - EnKisaMesafe ← DistanceMatrix[MevcutDurak][i]
+                - SonrakiDurak ← i
+
+    d. Eğer yolcu kapasite kontrolü isteniyorsa:
+        - Eğer Kapasite + PassengersPerStop[SonrakiDurak] > MaxCapacity ise:
+            - Devam et (başka durak ara veya kapasiteyi ihlal etme)
+
+    e. ZiyaretEdilenDuraklar içine SonrakiDurak ekle
+    f. OptimalRoute içine SonrakiDurak ekle
+    g. ToplamMesafe ← ToplamMesafe + EnKisaMesafe
+    h. Kapasite ← Kapasite + PassengersPerStop[SonrakiDurak] (varsa)
+    i. MevcutDurak ← SonrakiDurak
+
+8. (Opsiyonel) Başlangıç noktasına geri dön:
+    a. OptimalRoute içine StartStop ekle
+    b. ToplamMesafe ← ToplamMesafe + DistanceMatrix[MevcutDurak][StartStop]
+
+9. OptimalRoute ve ToplamMesafe’yi döndür
+10. Bitir
+

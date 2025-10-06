@@ -1,4 +1,42 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250541623
+AD-SOYAD:mustafa haccar
 
-Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:Function find_best_move(board, player):
+
+    opponent ← if player == 'X' then 'O' else 'X'
+
+    # 1. Kazanabileceğin hamle var mı? (Saldırı)
+    For each empty cell in board:
+        Simulate putting player's symbol in the cell
+        If is_winner(board, player):
+            Return that cell as the move
+        Undo the move
+
+    # 2. Rakip kazanmak üzere mi? (Savunma)
+    For each empty cell in board:
+        Simulate putting opponent's symbol in the cell
+        If is_winner(board, opponent):
+            Return that cell as the move (to block)
+        Undo the move
+
+    # 3. Merkez boş mu? (Stratejik hamle)
+    If board[1][1] is empty:
+        Return (1, 1)
+
+    # 4. Köşelerden biri boş mu?
+    For each cell in [(0,0), (0,2), (2,0), (2,2)]:
+        If cell is empty:
+            Return that cell
+
+    # 5. Kenarlar (orta yanlar) boş mu?
+    For each cell in [(0,1), (1,0), (1,2), (2,1)]:
+        If cell is empty:
+            Return that cell
+
+    # 6. Hiçbir şey yoksa (nadiren olur), ilk boş yere oyna
+    For each cell in board:
+        If cell is empty:
+            Return that cell
+
+End Function
+

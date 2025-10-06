@@ -1,4 +1,60 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250541623
+AD-SOYAD:mustafa haccar
 
-Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:ALGORITMA IdealKahveDemleme
+
+    // 1. Başlangıç
+    YAZ "Kahve türünü seçin: (1) Filtre, (2) Espresso, (3) Pour-over"
+    OKU kahveTuru
+
+    YAZ "Su sıcaklığını girin (°C): "
+    OKU sicaklik
+
+    YAZ "Kahve öğütme inceliğini girin (1-10 arası): "
+    OKU ogutme
+
+    YAZ "Kullanılacak su miktarını girin (ml): "
+    OKU suMiktari
+
+    YAZ "Demleme süresini girin (dakika): "
+    OKU sure
+
+    // 2. İdeal aralıkları belirle
+    EGER kahveTuru == 1 // Filtre kahve
+        idealSicaklik = 92-96
+        idealOgutme = 5-7
+        idealSure = 4-5
+    YOKSA EGER kahveTuru == 2 // Espresso
+        idealSicaklik = 88-93
+        idealOgutme = 2-4
+        idealSure = 0.5-1
+    YOKSA EGER kahveTuru == 3 // Pour-over
+        idealSicaklik = 90-94
+        idealOgutme = 6-8
+        idealSure = 3-4
+    DEGILSE
+        YAZ "Geçersiz seçim!"
+        DURDUR
+
+    // 3. Koşullu kontroller
+    EGER sicaklik < idealSicaklik.min VEYA sicaklik > idealSicaklik.max
+        YAZ "Uyarı: Su sıcaklığı ideal aralıkta değil!"
+    EGER ogutme < idealOgutme.min VEYA ogutme > idealOgutme.max
+        YAZ "Uyarı: Öğütme inceliği uygun değil!"
+    EGER sure < idealSure.min VEYA sure > idealSure.max
+        YAZ "Uyarı: Demleme süresi ideal değil!"
+
+    // 4. Demleme işlemi (tekrar eden süreç)
+    YAZ "Demleme başlıyor..."
+    i = 1
+    WHILE i <= sure*60  // süreyi saniyeye çeviriyoruz
+        YAZ "Demleme devam ediyor: ", i, " saniye"
+        i = i + 30
+    SONWHILE
+
+    // 5. Son kontrol
+    YAZ "Demleme tamamlandı!"
+    YAZ "Afiyet olsun ☕"
+
+SONALGORITMA
+

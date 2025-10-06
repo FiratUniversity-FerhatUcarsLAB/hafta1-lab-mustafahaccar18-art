@@ -1,4 +1,78 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250541623
+AD-SOYAD:mustafa haccar
+BAŞLA
+
+// 1. Gerekli malzemeler
+GEREKEN_MALZEMELER = ["yumurta", "tuz", "karabiber", "yağ", "süt"]
+ISTEGE_BAGLI_MALZEMELER = ["peynir", "mantarı", "sucuk", "biber", "soğan"]
+
+// 2. Malzemelerin olup olmadığını kontrol et
+HER malzeme içinde GEREKEN_MALZEMELER:
+    EĞER malzeme_buzdolabinda_var(malzeme) == HAYIRSA:
+        YAZ "Eksik malzeme: " + malzeme
+        YAZ "Lütfen eksik malzemeleri tamamlayın."
+        DUR
+
+// 3. Kaç kişilik omlet yapılacak?
+KISI_SAYISI = KULLANICIDAN_AL("Kaç kişilik omlet yapmak istiyorsunuz?")
+YUMURTA_SAYISI = KISI_SAYISI * 2
+
+// 4. Yumurtaları kır ve kaba koy
+FOR i = 1 TO YUMURTA_SAYISI:
+    YAZ i + ". yumurta kırılıyor..."
+    yumurta_kir()
+
+// 5. Tuz, karabiber ve az miktarda süt ekle
+malzeme_ekle("tuz")
+malzeme_ekle("karabiber")
+malzeme_ekle("süt")
+
+// 6. Yumurtaları iyice çırp
+SAYAC = 0
+WHILE SAYAC < 30:
+    cirp()
+    SAYAC = SAYAC + 1
+    BEKLE(1 saniye)
+
+// 7. Kullanıcıya isteğe bağlı malzeme eklemek isteyip istemediğini sor
+YAZ "İsteğe bağlı malzeme eklemek ister misiniz? (E/H)"
+CEVAP = KULLANICIDAN_AL()
+
+EĞER CEVAP == "E":
+    YAZ "Eklemek istediğiniz malzemeleri seçin: peynir, mantar, sucuk, biber, soğan"
+    SECILEN_MALZEMELER = KULLANICIDAN_AL()
+    FOR her_malzeme in SECILEN_MALZEMELER:
+        malzeme_dogra(her_malzeme)
+        malzeme_ekle(her_malzeme)
+        YAZ her_malzeme + " eklendi."
+
+// 8. Tavayı ocağa al ve ısıt
+tava_koy()
+ocak_ac(orta_ates)
+BEKLE(1 dakika)
+
+// 9. Tavaya yağ ekle
+malzeme_ekle("yağ")
+BEKLE(30 saniye)
+
+// 10. Çırpılmış yumurtayı tavaya dök
+tavaya_dok(yumurta_karisimi)
+
+// 11. Omleti pişir
+PIŞME_SÜRESİ = 4 dakika
+ZAMANLAYICI = 0
+
+WHILE ZAMANLAYICI < PIŞME_SÜRESİ:
+    EĞER alt_taraf_pisti() == EVET VE ust_taraf_hala_sivi() == EVET:
+        omleti_cevir()
+    BEKLE(1 dakika)
+    ZAMANLAYICI = ZAMANLAYICI + 1
+
+// 12. Omleti ocaktan al ve servis et
+ocak_kapat()
+omleti_tabaga_al()
+YAZ "Afiyet olsun! Omletiniz hazır."
+
+BİTİR
 
 Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:

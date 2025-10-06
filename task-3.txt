@@ -1,4 +1,42 @@
-Öğrenci No:
-AD-SOYAD:
+Öğrenci No:250541623
+AD-SOYAD:mustafa haccar
 
-Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:
+Lütfen seçtiğiniz algoritmaya ait çözümü ve diğer isterleri aşağıya ekleyiniz:BAŞLA
+
+KOLEKSIYON_KLASORUNU_SEC()
+DOSYALAR = KOLEKSIYON_KLASORUNDEKI_TUM_MUZIK_DOSYALARINI_LISTELE()
+
+HER BIR DOSYA ICIN DOSYALAR:
+    META = META_VERISINI_OKU(DOSYA)
+    
+    EGER META eksikse:
+        DOSYA_ADI = DOSYA.AD
+        TAHMIN_EDILEN_BILGI = DOSYA_ADINDAN_BILGI_CIKAR(DOSYA_ADI)
+        EKSİK_VERİLERİ = KULLANICIDAN_BILGI_AL(TAHMIN_EDILEN_BILGI)
+        META = META_VERISINI_GUNCELLE(DOSYA, EKSİK_VERİLERİ)
+    SON
+
+    HEDEF_KLASOR = OLUSTUR_KLASOR_YAPISI(META.TUR, META.SANATÇI, META.ALBÜM)
+
+    EGER HEDEF_KLASOR mevcut değilse:
+        KLASOR_OLUSTUR(HEDEF_KLASOR)
+    SON
+
+    EGER DOSYA_ZATEN_VAR(HEDEF_KLASOR, DOSYA):
+        EGER DOSYA_ICERIKLERI_AYNI(DOSYA, HEDEF_KLASOR):
+            KULLANICIYA_SOR("Kopya dosya bulundu. Silinsin mi?")
+            EGER KULLANICI_EVET_DERSE:
+                DOSYAYI_SIL(DOSYA)
+            DEGILSE:
+                DEVAM_ET
+        DEGILSE:
+            DOSYAYI_YENİ_ADLA_TASI(DOSYA, HEDEF_KLASOR)
+    DEGILSE:
+        DOSYAYI_TASI(DOSYA, HEDEF_KLASOR)
+    SON
+
+SON
+
+OZET_RAPOR_GOSTER()
+BITIR
+
